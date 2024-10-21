@@ -1,8 +1,9 @@
 {
   "expo": {
-    "name": "total",
-    "slug": "total",
+    "name": "420-512",
+    "slug": "420-512",
     "version": "1.0.0",
+    "scheme": "420-512",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -22,6 +23,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
