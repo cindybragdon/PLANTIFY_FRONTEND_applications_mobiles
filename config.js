@@ -1,1 +1,1 @@
-export const IP_BACKEND = "http://10.10.1.103:8080"
+export const IP_BACKEND = "youreIP"
