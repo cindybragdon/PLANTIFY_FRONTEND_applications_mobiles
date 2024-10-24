@@ -10,7 +10,7 @@ const index = () => {
     // const theme="dark"
     const router = useRouter()
     const colors = colorsPalette[theme]
-    // return <Redirect href="./1/profile" />;
+    return <Redirect href="./1/profile" />;
 
 
     return (
