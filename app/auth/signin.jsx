@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Dimensions, KeyboardAvoidingView, ActivityIndicator, ScrollView, Platform} from 'react-native'
+import {Text, View, TextInput, Dimensions, KeyboardAvoidingView, ActivityIndicator, ScrollView, Platform} from 'react-native'
 import React, {useState} from 'react'
 import { useTheme } from '../../contexts/ThemeContext'
 import { colorsPalette } from '../../assets/colorsPalette'
@@ -22,7 +22,7 @@ const signin = () => {
   const colors = colorsPalette[theme]
   
 
-  const [form, setForm] = useState({usernameOrEmail:"Harry Potter",password:"iloveGinny"})
+  const [form, setForm] = useState({usernameOrEmail:"",password:""})
   
   const submit = async () => {
 
@@ -50,7 +50,7 @@ const signin = () => {
         const result = await signIn(form.usernameOrEmail,form.password)
         setLoading(false)
         setForm({usernameOrEmail:"",password:""})
-        router.push(`../${result.username}/profile`)
+        router.push(`../${result.id}/profile`)
 
     } catch(error){
         setLoading(false)
@@ -69,7 +69,7 @@ const signin = () => {
             keyboardVerticalOffset={0}
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             className="flex-1 justify-evenly items-center"
-            style={[styles.container,{backgroundColor:colors.background_c1}]}
+            style={[{backgroundColor:colors.background_c1}]}
           >
       <SafeAreaView>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -82,7 +82,7 @@ const signin = () => {
                 <View
                   className="items-center justify-center py-5 rounded-lg border-2" style={[{width:WIDTH_BTN,color:colors.text,backgroundColor:colors.lightAlert,borderColor:colors.alert} ]}
                 >
-                  <Text className="text-md" style={{color:colors.alert}}>{"msgErreur"}</Text> 
+                  <Text className="text-md" style={{color:colors.alert}}>{msgErreur}</Text> 
                 </View>
                 : null
                 }
@@ -142,14 +142,3 @@ const signin = () => {
 }
 
 export default signin
-
-const styles = StyleSheet.create({
-    
-      textSubmitBtn:{
-        textAlign:'center',
-        fontSize:24,
-        fontWeight:'400',
-
-      },
-})
-

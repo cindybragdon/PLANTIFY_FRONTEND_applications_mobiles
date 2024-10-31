@@ -3,7 +3,11 @@ import { Drawer } from 'expo-router/drawer';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import CustomDrawerHeader from '../components/CustomDrawerHeader';
+import { NativeWindStyleSheet } from "nativewind";
 
+NativeWindStyleSheet.setOutput({
+  default: "native",
+});
 const RootLayout = () => {
   return (
     <ThemeProvider>

@@ -4,7 +4,7 @@ import { useTheme } from '../../contexts/ThemeContext'
 import { colorsPalette } from '../../assets/colorsPalette'
 import { TouchableOpacity } from 'react-native'
 import { useRouter, Link} from 'expo-router'
-import { signUp } from '../../lib/axios'
+import { setToken, signUp } from '../../lib/axios'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -22,7 +22,7 @@ const SignUp = () => {
   const colors = colorsPalette[theme]
   
 
-  const [form, setForm] = useState({username:"qCaptain Hook",email:"qarggg@pirate.ca",password:"mauditPeterPan"})
+  const [form, setForm] = useState({username:"",email:"",password:""})
   
   const submit = async () => {
 
@@ -46,13 +46,14 @@ const SignUp = () => {
         setAlertEmail(false)
       }
       return null
-    }
+    } 
 
     console.log(`Trying to SignUp with username : ${form.username}, email : ${form.email} and password : ${form.password}`)
 
     try{
         setLoading(true)
         const result = await signUp(form.username, form.email ,form.password)
+        
         setLoading(false)
         setForm({username:"", email:"", password:""})
         router.push(`../${result.id}/profile`)
