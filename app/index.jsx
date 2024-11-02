@@ -11,9 +11,24 @@ const index = () => {
     const router = useRouter()
     const colors = colorsPalette[theme]
     // return <Redirect href="./77/profile" />;
-    //TODO ---------------------------------------------------
-    
-    //----------------------------------------------------------
+    useFocusEffect(() => {
+        try{
+            const getId = async () => {
+                
+                const id = await getIdFromJwt()
+                if(!id){
+                    console.log("no jwt")
+                    return null
+                }
+                router.push(`/${id}/profile`)
+                
+            }
+            getId()
+            
+        }catch(error){
+            console.log(error)
+        }
+    })
     return (
         <View className={`flex-1 justify-evenly items-center`} style={{backgroundColor:colors.background_c1}} >
             <Text className={`text-6xl font-bold tracking-[2px] text-center uppercase`} style={{color:colors.primary}} >ChatMV</Text>

@@ -72,7 +72,6 @@ const profile = () => {
         console.log("Saving Error : " , error)
         isSaved = false
       }
-      // --------------------------------------------------------------------------
       return isSaved
     }
     setIsEditSuccess(await saveProfileData())
@@ -101,15 +100,18 @@ const profile = () => {
 
     )
   }
-
-  //TODO -----------------------------------------------
   const supprimerUser = async () => {
-
+    try{
+      const deleteUser = await deleteUserById(glob.user)
+      logOut()
+    }catch(error){
+      console.log(error)
+    }
   }
   const logOut = () => {
-
+    setToken('')
+    route.push('/')
   }
-  //--------------------------------------------------------
   return (
     <>
       <ScrollView style={{backgroundColor:colors.background_c1}}>
