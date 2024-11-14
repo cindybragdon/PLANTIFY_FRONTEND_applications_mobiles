@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
-import SignIn from '../app/auth/signin'; // Adjust the import based on your file structure
+import SignIn from '../app/auth/signin';
 import { useRouter } from 'expo-router';
 import { signIn, setToken} from '../lib/axios';
 import { ThemeProvider } from '../contexts/ThemeContext';
@@ -30,10 +30,7 @@ describe('Integration Tests for Authentication', () => {
     
     // Make sure you have this user in your test database
     const response = await signIn("A", "A");
-    console.log("lol75846547643654326488",response)
     expect(response).toHaveProperty('token'); // Check if a token is returned
-    const token = await setToken(); // Retrieve the token stored in AsyncStorage
-    // expect(token).toBe(response.token); // Ensure the token matches
   });
 
   it('should fail to sign in with invalid credentials', async () => {

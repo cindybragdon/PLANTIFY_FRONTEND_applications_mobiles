@@ -4,14 +4,14 @@ import React, { useEffect, useState } from 'react'
 import { useTheme } from '../../contexts/ThemeContext'
 import { colorsPalette } from '../../assets/colorsPalette'
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { fetchProfileData, setToken, updateProfileData, deleteUserById } from '../../lib/axios'
+import { fetchProfileData, setToken, updateProfileData, deleteUserById, fetchBlocks } from '../../lib/axios'
 import {useGlobalSearchParams, useRouter } from 'expo-router';
 import { ProfileImageMapping } from '../../assets/images/profile/profileImageMapping'
 
 const WIDTH = Dimensions.get('window').width
 
 const profile = () => {
-  const { theme } = useTheme()
+  const theme = "dark"
   const colors = colorsPalette[theme]
   const glob = useGlobalSearchParams();
   const route = useRouter()
@@ -20,7 +20,31 @@ const profile = () => {
   const [username,setUsername] = useState("Default")
   const [email,setEmail] = useState('Default@abc.ca')
   const [profilePic, setProfilePic] = useState('chiot1')
-
+  const [blocks, setBlocks] = useState([
+  {
+    id: 53,
+    name: 'Blocknado',
+    couleur: 4,
+    description: 'The storm of blocks you never saw coming. It’s highly destructive.'
+  },
+  {
+    id: 54,
+    name: 'The Unblockable Block',
+    couleur: 5,
+    description: 'It’s always going to get in your way, whether you like it or not.'
+  },
+  {
+    id: 55,
+    name: 'Biscuit Block',
+    couleur: 6,
+    description: 'Flaky and buttery, this block is the ultimate breakfast companion.'
+  },
+  {
+    id: 56,
+    name: 'The Mighty Brickster',
+    couleur: 7,
+    description: 'Does push-ups for breakfast. Also, has a side hustle in stand-up comedy.'
+  }])
   //States
   const [isEditing,setIsEditing] = useState(false)
   const [isModalVisible, setIsModalVisible] = useState(false)
@@ -31,7 +55,7 @@ const profile = () => {
   useEffect(() => {
     // Fetch profile data
 
-      const loadData = async () => {
+      const loadProfileData = async () => {
         try{
           const profileData = await fetchProfileData(glob.user);
           if(!profileData) throw new Error('Failed fetching data -> no Data')
@@ -45,7 +69,17 @@ const profile = () => {
           route.push("/auth/signin")
         }
       };
-      loadData();
+      const loadBlocks = async () => {
+        try{
+          const blocks = await fetchBlocks();
+          if(!blocks) throw new Error('Failed fetching blocks -> no Data')
+          setBlocks(blocks)
+        }catch(error){
+          console.log('Profile : Failed Loading blocks : ', error)
+        }
+      };
+      loadProfileData();
+      loadBlocks();
     
     setIsMounted(true); 
 
@@ -112,9 +146,28 @@ const profile = () => {
     setToken('')
     route.push('/')
   }
+
+  const renderBlock = ({item}) => {
+    return (
+      <View className="flex-row w-full py-2 pl-16">
+        <View className="w-4 h-full mx-3 rounded-full" style={{backgroundColor:colorMap[item.couleur]}}/>
+        <Text style={{color:colors.text}}>{item.name}</Text>
+      </View>
+    )
+  }
+  const colorMap = {
+    0:"gray",
+    1:"purple",
+    2:"blue",
+    3:"green",
+    4:"yellow",
+    5:"pink",
+    6:"red",
+    7:"black"
+  }
   return (
     <>
-      <ScrollView style={{backgroundColor:colors.background_c1}}>
+      <View className="h-full pb-16" style={{backgroundColor:colors.background_c1}}>
         <View className="w-full" >
           <View className="justify-center items-center py-5">
             <TouchableOpacity 
@@ -161,6 +214,13 @@ const profile = () => {
             </View>
           </View>
         </View>
+        <FlatList
+          data={blocks}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={renderBlock}
+          className="h-1/4"
+        />
+
         <View className="w-full items-center">
           <View className="flex-row justify-center items-center py-10 gap-5">
             <TouchableOpacity onPress={logOut} className="flex-row items-center justify-center w-1/3 p-2 rounded-md" style={{backgroundColor:colors.lightAlert}}>
@@ -178,7 +238,7 @@ const profile = () => {
               <Icon  name="trash-alt" size={30}  color={colors.lightText} />
           </TouchableOpacity>
         </View>
-      </ScrollView>
+      </View>
       <Modal
         animationType="none"
         transparent={true}

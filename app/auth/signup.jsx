@@ -60,7 +60,9 @@ const SignUp = () => {
 
     } catch(error){
         setLoading(false)
-        if(error.message == "AxiosError: Request failed with status code 409"){
+        console.log(error)
+        if(error.message.includes("Request failed with status code 409")){
+          
           setMsgErreur("Email et/ou Identifiant déjà utilisé")
         }
         else{
