@@ -11,7 +11,7 @@ import { ProfileImageMapping } from '../../assets/images/profile/profileImageMap
 const WIDTH = Dimensions.get('window').width
 
 const profile = () => {
-  const theme = "dark"
+  const {theme} = useTheme()
   const colors = colorsPalette[theme]
   const glob = useGlobalSearchParams();
   const route = useRouter()
