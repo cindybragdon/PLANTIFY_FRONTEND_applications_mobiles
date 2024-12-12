@@ -76,7 +76,7 @@ const SignUp = () => {
 
     <KeyboardAvoidingView 
           className="flex-1 items-center"
-          style={{backgroundColor:colors.background_c1}}
+          style={{backgroundColor:colors.background}}
 
           keyboardVerticalOffset={0}
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -85,9 +85,9 @@ const SignUp = () => {
           className="flex-1 items-center"
           >
             <ScrollView showsVerticalScrollIndicator={false}>
-              <Text className="text-7xl font-bold tracking-[2px] text-center uppercase pt-24 pb-16" style={{color:colors.primary}}>ChatMV</Text>
+              <Text className="text-6xl font-bold tracking-[4px] text-center uppercase pt-24 pb-16" style={{color:colors.green}}>Plantify</Text>
               <View className="flex-1 justify-center items-center gap-8" >
-                <Text className="text-4xl font-semibold pb-4" style={{color:colors.text}}>Créez votre compte</Text>
+              <Text className={"mb-16 text-3xl"} style={{color:colors.green}}>  Créez votre compte </Text>
                 {loading ? <ActivityIndicator size="large" color={colors.primary} /> : null}
 
                 {!msgErreur == "" ? 

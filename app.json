@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "420-512",
-    "slug": "420-512",
+    "name": "frontend",
+    "slug": "frontend",
     "version": "1.0.0",
     "scheme": "420-512",
     "orientation": "portrait",
