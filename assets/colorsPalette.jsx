@@ -8,9 +8,11 @@ export const colorsPalette = {
     alert: '#ba1313',
     lightText: 'white',
     lightAlert: '#db8f8f',
+
     green: '#2f734e',
     mediumgreen: '#629972',
-    lightgreen: '#8fb89b'
+    lightgreen: '#8fb89b',
+    textgreen: '#d3ebda'
 
   },
   dark:{

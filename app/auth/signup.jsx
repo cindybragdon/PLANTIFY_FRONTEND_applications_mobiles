@@ -1,4 +1,4 @@
-import {Text, View, TextInput, Dimensions, KeyboardAvoidingView, ActivityIndicator, ScrollView, Platform} from 'react-native'
+import {Text, View, TextInput, Dimensions, KeyboardAvoidingView, ActivityIndicator, ScrollView, Platform, StyleSheet, Image} from 'react-native'
 import React, {useState} from 'react'
 import { useTheme } from '../../contexts/ThemeContext'
 import { colorsPalette } from '../../assets/colorsPalette'
@@ -85,14 +85,16 @@ const SignUp = () => {
           className="flex-1 items-center"
           >
             <ScrollView showsVerticalScrollIndicator={false}>
-              <Text className="text-6xl font-bold tracking-[4px] text-center uppercase pt-24 pb-16" style={{color:colors.green}}>Plantify</Text>
+              <Text className="text-6xl font-bold tracking-[4px] text-center uppercase pt-24 pb-8" style={{color:colors.green}}>Plantify</Text>
+              <Image className="h-[200] w-[200] mb-[8]" style={styles.image} source={require('../../assets/images/rubberplant.png')} />
+
               <View className="flex-1 justify-center items-center gap-8" >
               <Text className={"mb-16 text-3xl"} style={{color:colors.green}}>  Créez votre compte </Text>
-                {loading ? <ActivityIndicator size="large" color={colors.primary} /> : null}
+                {loading ? <ActivityIndicator size="large" color={colors.green} /> : null}
 
                 {!msgErreur == "" ? 
                 <View
-                  className="items-center justify-center py-5 rounded-lg border-2" style={[{width:WIDTH_BTN,color:colors.text,backgroundColor:colors.lightAlert,borderColor:colors.alert} ]}
+                  className="items-center justify-center py-5 rounded-lg border-2" style={[{width:WIDTH_BTN,color:colors.green,backgroundColor:colors.lightAlert,borderColor:colors.alert} ]}
                 >
                   <Text style={{color:colors.alert}}>{msgErreur}</Text> 
                 </View>
@@ -102,10 +104,10 @@ const SignUp = () => {
                   <View className="flex-row items-center" >
                     <TextInput
                       className="justify-center py-5 rounded-lg text-center focus:border-2" 
-                      style={[{width:WIDTH_BTN, color:colors.text, backgroundColor:colors.background, borderColor:colors.primary},alertEmail ? {paddingRight:56,borderWidth:2,borderColor:colors.alert} : {}]}
+                      style={[{width:WIDTH_BTN, color:colors.text, backgroundColor:colors.green, borderColor:colors.primary},alertEmail ? {paddingRight:56,borderWidth:2,borderColor:colors.alert} : {}]}
                       onChangeText={(item) => {setForm({...form,email : item})}}
                       placeholder="Entrez votre courriel"
-                      placeholderTextColor={colors.secondary}
+                      placeholderTextColor={colors.textgreen}
                       value={form.email}
                       />
                     {alertEmail ? <Icon className="absolute right-4" name="exclamation-triangle" size={30} color={colors.alert} />: null}
@@ -116,10 +118,10 @@ const SignUp = () => {
                   <View style={{flexDirection:"row",alignItems:"center"}}>
                     <TextInput
                       className="justify-center py-5 rounded-lg text-center focus:border-2" 
-                      style={[{width:WIDTH_BTN,color:colors.text, backgroundColor:colors.background, borderColor:colors.primary},alertUsername ? {paddingRight:56,borderWidth:2,borderColor:colors.alert} : {}]}
+                      style={[{width:WIDTH_BTN,color:colors.text, backgroundColor:colors.green, borderColor:colors.primary},alertUsername ? {paddingRight:56,borderWidth:2,borderColor:colors.alert} : {}]}
                       onChangeText={(item) => {setForm({...form,username : item})}}
                       placeholder="Entrez l'identifiant"
-                      placeholderTextColor={colors.secondary}
+                      placeholderTextColor={colors.textgreen}
                       value={form.username}
                       />
                     {alertUsername ? <Icon className="absolute right-4" name="exclamation-triangle" size={30} color={colors.alert} />: null}
@@ -128,16 +130,15 @@ const SignUp = () => {
                   
                   {alertUsername ? <Text style={{color:colors.alert, paddingTop:5}}>Identifiant : Ce champs doit être rempli</Text> : null}
                 </View>
-                <View className="border-2 rounded-lg">
-                  <View className="absolute z-10 -top-2.5 left-4 w-auto px-1" style={{backgroundColor:colors.background_c1}}><Text className="w-auto">Mot de passe</Text></View>
+                <View className="">
                   <View className="m-3 z-0 flex-row items-center">
 
                     <TextInput
                         className="justify-center py-5 rounded-lg text-center focus:border-2" 
-                        style={[{width:WIDTH_BTN, color:colors.text, backgroundColor:colors.background, borderColor:colors.primary},alertMDP ? {paddingRight:56,borderWidth:2,borderColor:colors.alert} : {}]}
+                        style={[{width:WIDTH_BTN, color:colors.text, backgroundColor:colors.green, borderColor:colors.primary},alertMDP ? {paddingRight:56,borderWidth:2,borderColor:colors.alert} : {}]}
                         onChangeText={(item) => {setForm({...form,password : item})}}
                         placeholder='Entrez le mot de passe'
-                        placeholderTextColor={colors.secondary}
+                        placeholderTextColor={colors.textgreen}
                         value={form.password}
                         />
                     {alertMDP ? <Icon className="absolute right-4" name="exclamation-triangle" size={30} color={colors.alert} />: null}
@@ -147,10 +148,10 @@ const SignUp = () => {
 
                 </View>
                 <TouchableOpacity className="py-4 rounded-xl px-3" style={[{width:WIDTH_BTN,color:colors.text, backgroundColor:colors.primary}]} onPress={submit}>
-                    <Text className="text-center font-medium text-2xl"  style={{color:colors.lightText}}>Créez le compte</Text>
+                    <Text className="text-center font-medium text-2xl"  style={{color:colors.green}}>Créez le compte</Text>
                 </TouchableOpacity>
                 <View className="border-b border-gray-300 my-2.5 w-3/4" />
-                <Text class="text-3xl font-bold underline" style={{color:colors.text}}>If you already have an account <Link style={{color:colors.link}} href="./signin">Sign-in</Link></Text>
+                <Text class="text-3xl font-bold underline" style={{color:colors.text}}>Si vous avez déja un compte, <Link style={{color:colors.mediumgreen}} href="./signin">Sign-in</Link></Text>
 
                 
               </View>
@@ -159,6 +160,14 @@ const SignUp = () => {
         </KeyboardAvoidingView>
   )
 }
+
+const styles = StyleSheet.create({
+  image: {
+      height: 100,  
+      width: 400,   
+      resizeMode: 'contain',
+  },
+});
 
 export default SignUp
 
