@@ -52,7 +52,7 @@ const SignUp = () => {
 
     try{
         setLoading(true)
-        const result = await signUp(form.username, form.email ,form.password)
+        const result = await signUp(form.username, form.email, form.password)
         
         setLoading(false)
         setForm({username:"", email:"", password:""})
@@ -104,7 +104,7 @@ const SignUp = () => {
                   <View className="flex-row items-center" >
                     <TextInput
                       className="justify-center py-5 rounded-lg text-center focus:border-2" 
-                      style={[{width:WIDTH_BTN, color:colors.text, backgroundColor:colors.green, borderColor:colors.primary},alertEmail ? {paddingRight:56,borderWidth:2,borderColor:colors.alert} : {}]}
+                      style={[{width:WIDTH_BTN, color:colors.textgreen, backgroundColor:colors.green, borderColor:colors.lightgreen},alertEmail ? {paddingRight:56,borderWidth:2,borderColor:colors.alert} : {}]}
                       onChangeText={(item) => {setForm({...form,email : item})}}
                       placeholder="Entrez votre courriel"
                       placeholderTextColor={colors.textgreen}
@@ -118,7 +118,7 @@ const SignUp = () => {
                   <View style={{flexDirection:"row",alignItems:"center"}}>
                     <TextInput
                       className="justify-center py-5 rounded-lg text-center focus:border-2" 
-                      style={[{width:WIDTH_BTN,color:colors.text, backgroundColor:colors.green, borderColor:colors.primary},alertUsername ? {paddingRight:56,borderWidth:2,borderColor:colors.alert} : {}]}
+                      style={[{width:WIDTH_BTN,color:colors.textgreen, backgroundColor:colors.green, borderColor:colors.lightgreen},alertUsername ? {paddingRight:56,borderWidth:2,borderColor:colors.alert} : {}]}
                       onChangeText={(item) => {setForm({...form,username : item})}}
                       placeholder="Entrez l'identifiant"
                       placeholderTextColor={colors.textgreen}
@@ -135,7 +135,7 @@ const SignUp = () => {
 
                     <TextInput
                         className="justify-center py-5 rounded-lg text-center focus:border-2" 
-                        style={[{width:WIDTH_BTN, color:colors.text, backgroundColor:colors.green, borderColor:colors.primary},alertMDP ? {paddingRight:56,borderWidth:2,borderColor:colors.alert} : {}]}
+                        style={[{width:WIDTH_BTN, color:colors.textgreen, backgroundColor:colors.green, borderColor:colors.lightgreen},alertMDP ? {paddingRight:56,borderWidth:2,borderColor:colors.alert} : {}]}
                         onChangeText={(item) => {setForm({...form,password : item})}}
                         placeholder='Entrez le mot de passe'
                         placeholderTextColor={colors.textgreen}

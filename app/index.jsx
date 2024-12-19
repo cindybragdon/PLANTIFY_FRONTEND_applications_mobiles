@@ -86,7 +86,7 @@ const index = () => {
                 <Image source={require('../assets/images/waterdrop.png')} style={styles.dropletImage} />
             </Animated.View>
 
-            <View className="flex-row justify-evenly w-[80%] px-[20]">
+            <View className="flex-row justify-evenly w-[80%] px-[2]">
                 <TouchableOpacity
                     className={`rounded-[12] py-[12] px-[24]`}
                     style={{ backgroundColor: colors.green }}
@@ -113,8 +113,8 @@ const index = () => {
 
 const styles = StyleSheet.create({
     image: {
-        height: 400,
-        width: 400,
+        height: 300,
+        width: 300,
         resizeMode: 'contain',
     },
     droplet: {

@@ -131,7 +131,7 @@ const signin = () => {
                 </View>
                 <View className="pt-12">
                   <TouchableOpacity className="py-4 rounded-xl px-7" style={[{width:WIDTH_BTN,color:colors.text,backgroundColor:colors.green}]} onPress={submit}>
-                      <Text className="text-center font-medium text-2xl" style={[{color:colors.textgreen}]}>Se connectez</Text>
+                      <Text className="text-center font-medium text-2xl" style={[{color:colors.textgreen}]}>Se connecter</Text>
                   </TouchableOpacity>
                 <View className="" />
                 </View>
