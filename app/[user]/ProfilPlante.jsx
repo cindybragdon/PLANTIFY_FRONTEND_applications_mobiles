@@ -1,9 +1,9 @@
 import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { useTheme } from '../contexts/ThemeContext'
+import { useTheme } from '../../contexts/ThemeContext'
 import { useFocusEffect, useRouter } from 'expo-router'
-import { colorsPalette } from '../assets/colorsPalette'
-import { getIdFromJwt } from '../lib/axios'
+import { colorsPalette } from '../../assets/colorsPalette'
+import { getIdFromJwt } from '../../lib/axios'
 
 
 const profilPlante = () => {
@@ -17,9 +17,10 @@ const profilPlante = () => {
 
             <Text className={`text-5xl uppercase font-bold text-center tracking-[4px]`} style={{ color: colors.green }}> CLAUDETTE 🪴</Text>
             <View className="items-center">
-            <Image className="h-[200] w-[200] mb-[28] mt-[24] rounded-full" style={styles.image} source={require('../assets/images/plants.png')} />
+            <Image className="h-[200] w-[200] mb-[28] mt-[24] rounded-full" style={styles.image} source={require('../../assets/images/plants.png')} />
             </View>
             <View className="p-12">
+            <Text className={`text-lg font-serif mb-[16] text-left`} style={{ color: colors.green }}> Surnom : </Text>
             <Text className={`text-lg font-serif mb-[16] text-left`} style={{ color: colors.green }}> Type : </Text>
             <Text className={`text-lg font-serif mb-[16] text-left`} style={{ color: colors.green }}> Fréquence d'arrosage : </Text>
             <Text className={`text-lg font-serif mb-[16] text-left`} style={{ color: colors.green }}> Âge : </Text>

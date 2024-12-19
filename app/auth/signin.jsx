@@ -4,7 +4,7 @@ import { useTheme } from '../../contexts/ThemeContext'
 import { colorsPalette } from '../../assets/colorsPalette'
 import { TouchableOpacity } from 'react-native'
 import { Link, useRouter} from 'expo-router'
-import { signIn } from '../../lib/axios'
+import { login } from '../../lib/axios'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -47,7 +47,7 @@ const signin = () => {
 
     try{
         setLoading(true)
-        const result = await signIn(form.usernameOrEmail,form.password)
+        const result = await login(form.usernameOrEmail,form.password)
         setLoading(false)
         setForm({usernameOrEmail:"",password:""})
         router.push(`../${result.id}/profile`)
@@ -73,11 +73,11 @@ const signin = () => {
           >
       <SafeAreaView>
         <ScrollView showsVerticalScrollIndicator={false}>
-              <Text className="text-7xl font-bold tracking-[2px] text-center uppercase pt-24 pb-8" style={{color:colors.green}}>Plantify</Text>
+              <Text className="text-7xl font-bold tracking-[2px] text-center uppercase pt-24 pb-2" style={{color:colors.green}}>Plantify</Text>
               <Image className="mb-[56]" style={styles.image} source={require('../../assets/images/alocasia.png')} />
 
               <View className="flex-1 justify-center items-center gap-8" >
-                <Text className="text-4xl font-semibold pb-4" style={{color:colors.green}}>Connectez-vous</Text>
+                <Text className="text-4xl font-semibold pb-2" style={{color:colors.green}}>Connectez-vous</Text>
                 {loading ? <ActivityIndicator size="large" color={colors.green} /> : null}
                 
                 {!msgErreur == "" ? 
@@ -95,7 +95,7 @@ const signin = () => {
                       className="justify-center py-5 rounded-lg text-center" 
                       style={[{color:colors.text,backgroundColor:colors.green, width:WIDTH_BTN},alertIdentifier ? {paddingRight:56,borderWidth:2,borderColor:colors.alert} : {}]}
                       onChangeText={(item) => {setForm({...form,usernameOrEmail : item})}}
-                      placeholder="Entrez l'identifiant"
+                      placeholder="Entrez l'email"
                       placeholderTextColor={colors.textgreen}
                       value={form.usernameOrEmail}
                       />
@@ -104,10 +104,10 @@ const signin = () => {
                   
                   <View className="justify-end items-center"  style={{width:WIDTH_BTN}} >
                       <Link href="./recovery">
-                          <Text style={{color:colors.mediumgreen}}>Identifiant oublié?</Text>
+                          <Text style={{color:colors.mediumgreen}}>Email oublié?</Text>
                       </Link>
                   </View>
-                  {alertIdentifier ? <Text className="pt-1" style={{color:colors.alert}}>Identifiant : Ce champs doit être rempli</Text> : null}
+                  {alertIdentifier ? <Text className="pt-1" style={{color:colors.alert}}>Email : Ce champs doit être rempli</Text> : null}
                 </View>
                 <View>
                   <View className="flex-row items-center" >
@@ -129,7 +129,7 @@ const signin = () => {
                   {alertMDP? <Text className="pt-1" style={{color:colors.alert}}>Mot de passe : Ce champs doit être rempli</Text> : null}
                 
                 </View>
-                <View className="pt-12">
+                <View className="pt-4">
                   <TouchableOpacity className="py-4 rounded-xl px-7" style={[{width:WIDTH_BTN,color:colors.text,backgroundColor:colors.green}]} onPress={submit}>
                       <Text className="text-center font-medium text-2xl" style={[{color:colors.textgreen}]}>Se connecter</Text>
                   </TouchableOpacity>

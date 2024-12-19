@@ -27,8 +27,9 @@ const Layout = () => {
               }
             }>
               <Drawer.Screen name="index" options={{headerShown:false}} />
-              <Drawer.Screen name="camera/index" options={{headerShown:false}} />
               <Drawer.Screen name="auth" options={{headerShown:false}} />
+
+
           </Drawer>
         </GestureHandlerRootView>
     </>

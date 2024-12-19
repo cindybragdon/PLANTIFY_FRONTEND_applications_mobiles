@@ -1,10 +1,10 @@
 
 import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { useTheme } from '../contexts/ThemeContext'
+import { useTheme } from '../../contexts/ThemeContext'
 import { useFocusEffect, useRouter } from 'expo-router'
-import { colorsPalette } from '../assets/colorsPalette'
-import { getIdFromJwt } from '../lib/axios'
+import { colorsPalette } from '../../assets/colorsPalette'
+import { getIdFromJwt } from '../../lib/axios'
 
 const collection = () => {
     const { theme } = useTheme()

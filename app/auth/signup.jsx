@@ -85,11 +85,11 @@ const SignUp = () => {
           className="flex-1 items-center"
           >
             <ScrollView showsVerticalScrollIndicator={false}>
-              <Text className="text-6xl font-bold tracking-[4px] text-center uppercase pt-24 pb-8" style={{color:colors.green}}>Plantify</Text>
-              <Image className="h-[200] w-[200] mb-[8]" style={styles.image} source={require('../../assets/images/rubberplant.png')} />
+              <Text className="text-6xl font-bold tracking-[4px] text-center uppercase pt-12 pb-6" style={{color:colors.green}}>Plantify</Text>
+              <Image className="h-[200] w-[200] mb-[2]" style={styles.image} source={require('../../assets/images/rubberplant.png')} />
 
               <View className="flex-1 justify-center items-center gap-8" >
-              <Text className={"mb-16 text-3xl"} style={{color:colors.green}}>  Créez votre compte </Text>
+              <Text className={"mb-2 text-3xl"} style={{color:colors.green}}>  Créez votre compte </Text>
                 {loading ? <ActivityIndicator size="large" color={colors.green} /> : null}
 
                 {!msgErreur == "" ? 
