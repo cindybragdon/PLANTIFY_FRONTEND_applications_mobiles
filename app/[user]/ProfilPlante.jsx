@@ -13,7 +13,7 @@ const profilPlante = ({ plant }) => {
     const router = useRouter()
     const colors = colorsPalette[theme]
     const refresh = useRef(false)
-    //const [isWatered, setIsWatered] = useState(false);
+    const [isWatered, setIsWatered] = useState(false);
     const [key, setKey] = useState(0);
 
     const handleWatering = async () => {
