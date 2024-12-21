@@ -17,10 +17,10 @@ const collection = () => {
             <Text className={`text-m font-serif mb-[34]`} style={{ color: colors.green }}>50 shades of green</Text>
 
             <View className="flex justify-evenly w-[80%] px-[20]">
-                <TouchableOpacity className={`rounded-[12] py-[12] px-[24] mb-[12]`} style={{ backgroundColor: colors.green }} onPress={() => { router.push("./auth/") }}>
+                <TouchableOpacity className={`rounded-[12] py-[12] px-[24] mb-[12]`} style={{ backgroundColor: colors.green }} onPress={() => { router.push("./[user]/addPlant") }}>
                     <Text className={`text-lg text-center`} style={{ color: colors.lightText }}>Ajouter une plante</Text>
                 </TouchableOpacity>
-                <TouchableOpacity className={`rounded-[12] py-[12] px-[24] mb-[12]`} style={{ backgroundColor: colors.green }} onPress={() => { router.push("./auth/") }}>
+                <TouchableOpacity className={`rounded-[12] py-[12] px-[24] mb-[12]`} style={{ backgroundColor: colors.green }} onPress={() => { router.push("./[user]/addPlant") }}>
                     <Text className={`text-lg text-center`} style={{ color: colors.lightText }}>Catalogue de plante</Text>
                 </TouchableOpacity>
             </View>

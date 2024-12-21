@@ -4,14 +4,13 @@ import { useTheme } from '../contexts/ThemeContext'
 import { useFocusEffect, useRouter } from 'expo-router'
 import { colorsPalette } from '../assets/colorsPalette'
 import { getIdFromJwt } from '../lib/axios'
-import Redirect from '../lib/redirect'
 import Animated, { Easing, withRepeat, withTiming, useSharedValue, useAnimatedStyle } from 'react-native-reanimated'
 
 const index = () => {
     const { theme } = useTheme()
     const router = useRouter()
     const colors = colorsPalette[theme]
-
+  
     const drop_y = useSharedValue(1);
     const dropletOpacity = useSharedValue(1);
 

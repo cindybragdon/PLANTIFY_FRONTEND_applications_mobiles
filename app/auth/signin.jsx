@@ -4,7 +4,7 @@ import { useTheme } from '../../contexts/ThemeContext'
 import { colorsPalette } from '../../assets/colorsPalette'
 import { TouchableOpacity } from 'react-native'
 import { Link, useRouter} from 'expo-router'
-import { login } from '../../lib/axios'
+import { signIn } from '../../lib/axios'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -22,7 +22,7 @@ const signin = () => {
   const colors = colorsPalette[theme]
   
 
-  const [form, setForm] = useState({usernameOrEmail:"",password:""})
+  const [form, setForm] = useState({usernameOrEmail:"jenna",password:"abc123"})
   
   const submit = async () => {
 
@@ -47,7 +47,7 @@ const signin = () => {
 
     try{
         setLoading(true)
-        const result = await login(form.usernameOrEmail,form.password)
+        const result = await signIn(form.usernameOrEmail,form.password)
         setLoading(false)
         setForm({usernameOrEmail:"",password:""})
         router.push(`../${result.id}/profile`)
@@ -93,7 +93,7 @@ const signin = () => {
                   <View className="flex-row items-center">
                     <TextInput
                       className="justify-center py-5 rounded-lg text-center" 
-                      style={[{color:colors.text,backgroundColor:colors.green, width:WIDTH_BTN},alertIdentifier ? {paddingRight:56,borderWidth:2,borderColor:colors.alert} : {}]}
+                      style={[{color:colors.textgreen,backgroundColor:colors.green, width:WIDTH_BTN},alertIdentifier ? {paddingRight:56,borderWidth:2,borderColor:colors.alert} : {}]}
                       onChangeText={(item) => {setForm({...form,usernameOrEmail : item})}}
                       placeholder="Entrez l'email"
                       placeholderTextColor={colors.textgreen}
@@ -113,7 +113,7 @@ const signin = () => {
                   <View className="flex-row items-center" >
                     <TextInput
                         className="justify-center py-5 rounded-lg text-center" 
-                        style={[{width:WIDTH_BTN,color:colors.text,backgroundColor:colors.green},alertMDP ? {paddingRight:56,borderWidth:2,borderColor:colors.alert} : {}]}
+                        style={[{width:WIDTH_BTN,color:colors.textgreen,backgroundColor:colors.green},alertMDP ? {paddingRight:56,borderWidth:2,borderColor:colors.alert} : {}]}
                         onChangeText={(item) => {setForm({...form,password : item})}}
                         placeholder='Entrez le mot de passe'
                         placeholderTextColor={colors.textgreen}
@@ -152,4 +152,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default signin
+export default signin;

@@ -8,7 +8,7 @@ import { setToken, signUp } from '../../lib/axios'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-const  WIDTH_BTN = Dimensions.get('window').width - 56
+const  WIDTH_BTN = Dimensions.get('window').width -56 
 
 const SignUp = () => { 
   
@@ -75,19 +75,20 @@ const SignUp = () => {
   return (
 
     <KeyboardAvoidingView 
-          className="flex-1 items-center"
+          className="flex-1 "
           style={{backgroundColor:colors.background}}
 
           keyboardVerticalOffset={0}
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         >
           <SafeAreaView 
-          className="flex-1 items-center"
+          className="flex-1"
           >
             <ScrollView showsVerticalScrollIndicator={false}>
               <Text className="text-6xl font-bold tracking-[4px] text-center uppercase pt-12 pb-6" style={{color:colors.green}}>Plantify</Text>
-              <Image className="h-[200] w-[200] mb-[2]" style={styles.image} source={require('../../assets/images/rubberplant.png')} />
-
+              <View className="w-full items-center">
+              <Image className="mb-[2]" style={styles.image} source={require('../../assets/images/rubberplant.png')} />
+              </View>
               <View className="flex-1 justify-center items-center gap-8" >
               <Text className={"mb-2 text-3xl"} style={{color:colors.green}}>  Créez votre compte </Text>
                 {loading ? <ActivityIndicator size="large" color={colors.green} /> : null}
@@ -147,10 +148,10 @@ const SignUp = () => {
                   {alertMDP? <Text style={{color:colors.alert, paddingTop:5}}>Mot de passe : Ce champs doit être rempli</Text> : null}
 
                 </View>
-                <TouchableOpacity className="py-4 rounded-xl px-3" style={[{width:WIDTH_BTN,color:colors.text, backgroundColor:colors.primary}]} onPress={submit}>
+                <TouchableOpacity className=" rounded-xl " style={[{width:WIDTH_BTN,color:colors.text, backgroundColor:colors.primary}]} onPress={submit}>
                     <Text className="text-center font-medium text-2xl"  style={{color:colors.green}}>Créez le compte</Text>
                 </TouchableOpacity>
-                <View className="border-b border-gray-300 my-2.5 w-3/4" />
+
                 <Text class="text-3xl font-bold underline" style={{color:colors.text}}>Si vous avez déja un compte, <Link style={{color:colors.mediumgreen}} href="./signin">Sign-in</Link></Text>
 
                 
@@ -164,8 +165,9 @@ const SignUp = () => {
 const styles = StyleSheet.create({
   image: {
       height: 100,  
-      width: 400,   
+      width: 100,   
       resizeMode: 'contain',
+      
   },
 });
 
