@@ -32,12 +32,11 @@ const profile = () => {
       const loadData = async () => {
         try{
 
-          const profileData = await 9
-          ();
+          const profileData = await getUser();
           console.log(profileData);
           if(!profileData) throw new Error('Failed fetching data -> no Data')
             console.log(profileData)
-          setUsername(profileData);
+          setUsername(profileData.username);
           setEmail(profileData.email);
 
           const photo = await AsyncStorage.getItem('photo');
