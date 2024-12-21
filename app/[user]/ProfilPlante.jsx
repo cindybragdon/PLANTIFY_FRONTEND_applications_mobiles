@@ -4,7 +4,7 @@ import { useTheme } from '../../contexts/ThemeContext'
 import { useFocusEffect, useRouter } from 'expo-router'
 import { colorsPalette } from '../../assets/colorsPalette'
 import { getIdFromJwt, waterPlant  } from '../../lib/axios'
-import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
+// import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 
 //Animation Olivier https://www.npmjs.com/package/react-native-countdown-circle-timer
 

@@ -49,7 +49,7 @@ const addPlant = () => {
                     { width: WIDTH_BTN, color: colors.textgreen, backgroundColor: colors.green },
                     {   }
                     ]}
-                    onChangeText={(item) => setForm({ ...form, name: item })}
+                    onChangeText={(item) => setForm({ ...form, type: item })}
                     placeholder="Entrez le type de votre plante"  
                     placeholderTextColor={colors.textgreen}
                     value={form.type}
@@ -60,7 +60,7 @@ const addPlant = () => {
                     { width: WIDTH_BTN, color: colors.textgreen, backgroundColor: colors.green },
                     {   }
                     ]}
-                    onChangeText={(item) => setForm({ ...form, name: item })}
+                    onChangeText={(item) => setForm({ ...form, age: item })}
                     placeholder="Entrez l'age de votre plante"  
                     placeholderTextColor={colors.textgreen}
                     value={form.age}
@@ -71,7 +71,7 @@ const addPlant = () => {
                     { width: WIDTH_BTN, color: colors.textgreen, backgroundColor: colors.green },
                     {   }
                     ]}
-                    onChangeText={(item) => setForm({ ...form, name: item })}
+                    onChangeText={(item) => setForm({ ...form, location: item })}
                     placeholder="Entrez la location de votre plante"  
                     placeholderTextColor={colors.textgreen}
                     value={form.location}

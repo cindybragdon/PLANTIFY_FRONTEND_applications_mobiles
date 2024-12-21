@@ -4,7 +4,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useTheme } from '../../contexts/ThemeContext';
 import { colorsPalette } from '../../assets/colorsPalette';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { fetchProfileData, setToken, updateProfileData, deleteUserById, getToken, getIdFromJwt, getUser } from '../../lib/axios';
+import { fetchProfileData, setToken, updateProfileData, deleteUserById, getToken, getIdFromJwt } from '../../lib/axios';
 import { useGlobalSearchParams, useRouter, useFocusEffect } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MapView, { Marker, Circle } from 'react-native-maps';
@@ -15,6 +15,7 @@ const WIDTH = Dimensions.get('window').width;
 const profile = () => {
   const { theme } = useTheme();
   const colors = colorsPalette[theme];
+  const glob = useGlobalSearchParams();
   const router = useRouter();
   const refresh = useRef(false);
   const markerImage = require("../../assets/images/profile/logoMV.png");
@@ -31,11 +32,8 @@ const profile = () => {
 
       const loadData = async () => {
         try{
-
-          const profileData = await getUser();
-          console.log(profileData);
+          const profileData = await fetchProfileData(glob.user);
           if(!profileData) throw new Error('Failed fetching data -> no Data')
-            console.log(profileData)
           setUsername(profileData.username);
           setEmail(profileData.email);
 
@@ -61,8 +59,7 @@ const profile = () => {
 
   const supprimerUser = async () => {
     try {
-      const profileData = await getUser();
-      await deleteUserById(profileData.userId);
+      await deleteUserById(glob.user);
       logOut();
     } catch (error) {
       console.log(error);
@@ -94,11 +91,11 @@ const profile = () => {
           </TouchableOpacity>
           <View className="mt-10">
             {!isEditing ?
-              <Text className="text-4xl font-medium px-16" style={{ color: colors.primary }}>{username}</Text>
+              <Text className="text-4xl font-medium px-16" style={{ color: colors.green }}>{username}</Text>
               :
               <TextInput
                 className="justify-center text-center text-4xl font-medium px-16"
-                style={[{ color: colors.primary, backgroundColor: colors.background_c1 }]}
+                style={[{ color: colors.green, backgroundColor: colors.background}]}
                 onChangeText={(item) => { setUsername(item); }}
                 placeholder="Entrez l'identifiant"
                 placeholderTextColor={colors.secondary}
@@ -137,39 +134,40 @@ const profile = () => {
           <View className="flex-row justify-center items-center py-10 gap-5">
             <TouchableOpacity onPress={logOut} className={`rounded-[12] py-[12] px-[24]`}
                     style={{ backgroundColor: colors.green }}>
-              <Text className="pr-1" style={{ color: colors.lightText }}>Déconnexion</Text>
+              <Text className="pr-1 text-2xl" style={{ color: colors.lightText }}>Déconnexion</Text>
               
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => { setIsEditing((prev) => { return !prev; }); }} className={`rounded-[12] py-[12] px-[24]`}
+            <TouchableOpacity className={`rounded-[12] py-[12] px-[24]`} 
+                    onPress={() => { setIsEditing((prev) => { return !prev; }); }}
                     style={{ backgroundColor: colors.green }}>
-              <Text className="pr-1" style={{ color: colors.lightText }}>Modifier</Text>
+              <Text className="pr-1 text-2xl" style={{ color: colors.lightText }}>Modifier</Text>
             </TouchableOpacity>
           </View>
           
         </View>
         <View>
         <TouchableOpacity
-  onPress={supprimerUser}
-  className={`rounded-[12] py-[12]`}
-  style={{
-    backgroundColor: colors.alert,
-    width: '33%', 
-    alignSelf: 'center', 
-    alignItems: 'center', 
-    justifyContent: 'center', 
-  }}
->
-  <Text style={{ color: colors.lightText, textAlign: 'center', fontSize: 16 }}>
-    Supprimer 
-    <Icon name="trash-alt" size={20} color={colors.lightText} />
-  </Text>
-</TouchableOpacity>
+          onPress={supprimerUser}
+          className={`rounded-[12] py-[12]`}
+          style={{
+          backgroundColor: colors.alert,
+          width: '33%', 
+          alignSelf: 'center', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          }}
+          >
+          <Text className="pr-1 text-2xl"style={{ color: colors.lightText, textAlign: 'center' }}>
+          Supprimer 
+          <Icon name="trash-alt" size={20} color={colors.lightText} />
+          </Text>
+          </TouchableOpacity>
           </View>
 
       </View>
       <OverlayMessage
         message={isEditSuccess ? "Changes saved successfully!" : "Error changes did not save"}
-        styles={isEditSuccess ? { backgroundColor: "#bbf7d0", borderColor: "#22c55e" } : { backgroundColor: "#fecaca", borderColor: "#dc2626" }}
+        styles={isEditSuccess ? { backgroundColor: "#bbf7d0", borderColor: "#8fb89b" } : { backgroundColor: "#fecaca", borderColor: "#dc2626" }}
         visible={messageVisible}
         onDismiss={() => { setMessageVisible(false); }}
       />
