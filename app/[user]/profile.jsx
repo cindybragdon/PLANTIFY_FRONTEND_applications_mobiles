@@ -4,7 +4,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useTheme } from '../../contexts/ThemeContext';
 import { colorsPalette } from '../../assets/colorsPalette';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { fetchProfileData, setToken, updateProfileData, deleteUserById, getToken, getIdFromJwt } from '../../lib/axios';
+import { fetchProfileData, setToken, updateProfileData, deleteUserById, getToken, getIdFromJwt, getUser } from '../../lib/axios';
 import { useGlobalSearchParams, useRouter, useFocusEffect } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MapView, { Marker, Circle } from 'react-native-maps';
@@ -15,7 +15,6 @@ const WIDTH = Dimensions.get('window').width;
 const profile = () => {
   const { theme } = useTheme();
   const colors = colorsPalette[theme];
-  const glob = useGlobalSearchParams();
   const router = useRouter();
   const refresh = useRef(false);
   const markerImage = require("../../assets/images/profile/logoMV.png");
@@ -32,9 +31,13 @@ const profile = () => {
 
       const loadData = async () => {
         try{
-          const profileData = await fetchProfileData(glob.user);
+
+          const profileData = await 9
+          ();
+          console.log(profileData);
           if(!profileData) throw new Error('Failed fetching data -> no Data')
-          setUsername(profileData.username);
+            console.log(profileData)
+          setUsername(profileData);
           setEmail(profileData.email);
 
           const photo = await AsyncStorage.getItem('photo');
@@ -59,7 +62,8 @@ const profile = () => {
 
   const supprimerUser = async () => {
     try {
-      await deleteUserById(glob.user);
+      const profileData = await getUser();
+      await deleteUserById(profileData.userId);
       logOut();
     } catch (error) {
       console.log(error);

@@ -49,7 +49,7 @@ const profilPlante = ({ plant }) => {
             </TouchableOpacity>
             </View>
             
-            {/* <View>
+            <View>
             <CountdownCircleTimer
                 key={key}
                 isPlaying={isWatered}
@@ -70,7 +70,7 @@ const profilPlante = ({ plant }) => {
             </View> 
             
             <Button title="Arrosée!" onPress={handleWatering} />
-            */}
+           
             <Text className={`text-lg font-serif mb-[16] text-left`} style={{ color: colors.green }}> Surnom : </Text>
             <Text className={`text-lg font-serif mb-[16] text-left`} style={{ color: colors.green }}> Type : </Text>
             <Text className={`text-lg font-serif mb-[16] text-left`} style={{ color: colors.green }}> Fréquence d'arrosage : </Text>
